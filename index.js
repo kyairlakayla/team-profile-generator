@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const team = [];
+//const team = [];
 
 const addToTeam = () => {
     return inquirer.prompt([
@@ -14,8 +14,8 @@ const addToTeam = () => {
                 "Finish"
             ]
         }
-]).then(function(dataInput) {
-        const employeeRole = dataInput.addEmployee;       
+]).then(function(data) {
+        const employeeRole = data.addEmployee;       
         if (employeeRole === "Manager") {
            managerInfo();
       } else if (employeeRole === "Engineer") {
@@ -50,11 +50,11 @@ const managerInfo = () => {
             name: 'officeNumber',
             message: 'Manager office phone number:'
         }
-    ])//.then(function(dataInput) {
-    //    const manager = new Manager(dataInput.managerName, dataInput.managerId, dataInput.managerEmail, dataInput.officeNumber);
-    //   team.push(manager);
-    //    addToTeam();
-//    });
+    ]).then(function(data) {
+//        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.officeNumber);
+//      team.push(manager);
+       addToTeam();
+    });
 }
 
 const engineerInfo = () => {
@@ -79,11 +79,11 @@ const engineerInfo = () => {
             name: 'engineerGithub',
             message: 'Engineer GitHub link:'
         }
-    ])//.then(function(dataInput) {
-    //    const engineer = new Engineer(dataInput.engineerName, dataInput.engineerId, dataInput.engineerGithub);
-    //    team.push(engineer);
-    //    addToTeam();
-//    });
+    ]).then(function(data) {
+//       const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerGithub);
+//        team.push(engineer);
+        addToTeam();
+    });
 }
 
 const internInfo = () => {
@@ -106,13 +106,13 @@ const internInfo = () => {
         {
             type: 'input',
             name: 'internSchool',
-            messge: 'Intern School:'
+            message: 'Intern School:'
         }
-    ])//then(function(dataInput) {
-//        const intern = new Intern(dataInput.internName, dataInput.internId, dataInput.internEmail, dataInput.internSchool);
+    ]).then(function(data) {
+//        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internSchool);
 //        team.push(intern);
-//        addToTeam();
-//    });
+        addToTeam();
+    });
 }
 
 addToTeam();
