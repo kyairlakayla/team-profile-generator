@@ -93,7 +93,7 @@ const engineerInfo = () => {
             message: 'Engineer GitHub link:'
         }
     ]).then(function(data) {
-       const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerGithub);
+       const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerEmail, data.engineerGithub);
         team.push(engineer);
         addToTeam();
     });
