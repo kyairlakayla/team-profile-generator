@@ -1,5 +1,6 @@
+const { fstat } = require('fs');
 const inquirer = require('inquirer');
-//const team = [];
+const team = [];
 
 const addToTeam = () => {
     return inquirer.prompt([
@@ -113,6 +114,14 @@ const internInfo = () => {
 //        team.push(intern);
         addToTeam();
     });
+}
+
+const renderTeam = () => {
+    fs.writeFile(outputPath), render(team), "utf-8", function(error, data) {
+        if (error) {
+            throw error;
+        }
+    }
 }
 
 addToTeam();
