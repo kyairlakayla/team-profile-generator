@@ -7,4 +7,4 @@ This application can generate work team profiles using node.js in the command li
 Install using node.js in the command line. The Inquirer package is also needed. 
 
 ## Screenshot 
-![Screenshot]("./assets/Screen Shot 2021-09-11 at 1.45.08 PM.png")
+![Screenshot](./assets/screenshot.png)
