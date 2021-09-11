@@ -1,7 +1,19 @@
-const { fstat } = require('fs');
+const fs = require('fs');
 const inquirer = require('inquirer');
+const path = require("path");
 const team = [];
 
+
+const Manager = require("./lib/manager");
+const Engineer = require("./lib/engineer");
+const Intern = require("./lib/intern");
+const render = require("./lib/renderHTML");
+
+const OUTPUT_DIR = path.resolve(__dirname, "dist");
+const outputPath = path.join(OUTPUT_DIR, "team.html");
+
+
+// Start Inquirer prompt functions 
 const addToTeam = () => {
     return inquirer.prompt([
         {
@@ -52,8 +64,8 @@ const managerInfo = () => {
             message: 'Manager office phone number:'
         }
     ]).then(function(data) {
-//        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.officeNumber);
-//      team.push(manager);
+        const manager = new Manager(data.managerName, data.managerId, data.managerEmail, data.officeNumber);
+      team.push(manager);
        addToTeam();
     });
 }
@@ -81,8 +93,8 @@ const engineerInfo = () => {
             message: 'Engineer GitHub link:'
         }
     ]).then(function(data) {
-//       const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerGithub);
-//        team.push(engineer);
+       const engineer = new Engineer(data.engineerName, data.engineerId, data.engineerGithub);
+        team.push(engineer);
         addToTeam();
     });
 }
@@ -110,18 +122,22 @@ const internInfo = () => {
             message: 'Intern School:'
         }
     ]).then(function(data) {
-//        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internSchool);
-//        team.push(intern);
+        const intern = new Intern(data.internName, data.internId, data.internEmail, data.internSchool);
+        team.push(intern);
         addToTeam();
     });
 }
 
-const renderTeam = () => {
-    fs.writeFile(outputPath), render(team), "utf-8", function(error, data) {
-        if (error) {
-            throw error;
-        }
-    }
+// Write file
+function renderTeam() {
+    fs.writeFile(outputPath, render(team), "utf-8", function(error, data) {
+      if (error) {
+        throw error;
+      }
+  
+      console.log("Successfully rendered team!");
+  
+    })
 }
 
 addToTeam();
